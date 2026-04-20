@@ -30,9 +30,9 @@ double timeToSeconds(std::string s) {
 
 int main() {
     std::vector<std::string> kingdoms = {
-        "Cap", "Cascade", "Sand", "Lake", "Wooded", 
+        "Mushroom", "Cap", "Cascade", "Sand", "Lake", "Wooded", 
         "Cloud", "Lost", "Metro", "Snow", "Seaside", 
-        "Luncheon", "Ruined", "Bowser's", "Moon"
+        "Luncheon", "Ruined", "Bowser's", "Moon", "Dark Side",  "Darker Side"
     };
 
     std::vector<double> times;
