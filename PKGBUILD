@@ -1,6 +1,6 @@
 # Maintainer: aray4iv3 <aray.4iv3@gmail.com>
 pkgname=smosummary
-pkgver=1.1.0
+pkgver=1.2.0
 pkgrel=1
 pkgdesc="A Sum of Best (SoB) calculator for Super Mario Odyssey speedrunners"
 arch=('x86_64')
