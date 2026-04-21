@@ -37,28 +37,45 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         std::string flag = argv[1];
         if (flag == "--version" || flag == "-v") {
-            std::cout << GOLD << "smosummary v1.2.0-2" << std::endl;
+            std::cout << GOLD << BOLD << "smosummary v1.3.0-1" << std::endl;
             std::cout << "creator and publisher: aray4iv3" << RESET << std::endl;
             return 0; // throw the program out the window
         }
     }
 
-    // everything in existence
-    std::vector<std::string> kingdoms = {
-        "Mushroom", "Cap", "Cascade", "Sand", "Lake", "Wooded", 
-        "Cloud", "Lost", "Metro", "Snow", "Seaside", 
-        "Luncheon", "Ruined", "Bowser's", "Moon", 
-        "Dark Side", "Darker Side"
+    // the kingdom manifests
+    std::vector<std::string> anyLake = {
+        "Cap", "Cascade", "Sand", "Lake", "Cloud", "Lost", "Metro", "Snow", "Seaside", "Luncheon", "Ruined", "Bowser's", "Moon"
+    };
+    std::vector<std::string> anyWooded = {
+        "Cap", "Cascade", "Sand", "Wooded", "Cloud", "Lost", "Metro", "Snow", "Seaside", "Luncheon", "Ruined", "Bowser's", "Moon"
+    };
+    std::vector<std::string> allKingdoms = {
+        "Mushroom", "Cap", "Cascade", "Sand", "Lake", "Wooded", "Cloud", "Lost", "Metro", "Snow", "Seaside", "Luncheon", "Ruined", "Bowser's", "Moon", "Dark Side", "Darker Side"
     };
 
     std::vector<double> times;
     std::string input;
     int mode = 1;
+    int routeChoice = 1;
 
     std::cout << GOLD << "--- smosummary: Sum of Best Calculator ---" << RESET << std::endl;
     
+    // choose the path!!
+    std::cout << BOLD << "Select Route:" << RESET << std::endl;
+    std::cout << "1) Any% (Lake)" << std::endl;
+    std::cout << "2) Any% (Wooded)" << std::endl;
+    std::cout << "3) All Kingdoms" << std::endl;
+    std::cout << "Selection > ";
+    std::cin >> routeChoice;
+
+    std::vector<std::string> activeKingdoms;
+    if (routeChoice == 1) activeKingdoms = anyLake;
+    else if (routeChoice == 2) activeKingdoms = anyWooded;
+    else activeKingdoms = allKingdoms;
+
     // total or split? choose already!!
-    std::cout << BOLD << "Choose Input Mode:" << RESET << std::endl;
+    std::cout << BOLD << "\nChoose Input Mode:" << RESET << std::endl;
     std::cout << "1) Split Times (Individual segments)" << std::endl;
     std::cout << "2) Cumulative Times (Run timer at each kingdom)" << std::endl;
     std::cout << "Selection > ";
@@ -69,7 +86,7 @@ int main(int argc, char* argv[]) {
 
     double previousCumulative = 0;
 
-    for (const std::string& k : kingdoms) {
+    for (const std::string& k : activeKingdoms) {
         while (true) {
             std::cout << CYAN << k << " Kingdom" << RESET << " > ";
             std::cin >> input;
@@ -120,12 +137,13 @@ int main(int argc, char* argv[]) {
 
         outFile << "\n===========================================\n";
         outFile << "SESSION: " << dt;
+        outFile << "ROUTE: " << (routeChoice == 1 ? "Any% (Lake)" : (routeChoice == 2 ? "Any% (Wooded)" : "All Kingdoms")) << "\n";
         outFile << "MODE: " << (mode == 2 ? "Cumulative" : "Splits") << "\n";
         outFile << "===========================================\n";
         
-        for (size_t i = 0; i < kingdoms.size(); ++i) {
+        for (size_t i = 0; i < activeKingdoms.size(); ++i) {
             // grab "formatting" by the collar and throw him out the window
-            outFile << std::left << std::setw(15) << kingdoms[i] << ": " << times[i] << "s\n";
+            outFile << std::left << std::setw(15) << activeKingdoms[i] << ": " << times[i] << "s\n";
         }
         outFile << "TOTAL SOB: " << h << "h " << m << "m " << s << "s\n";
         outFile.close();
@@ -135,4 +153,4 @@ int main(int argc, char* argv[]) {
     }
 
     return 0;
-}
+};
