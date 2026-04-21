@@ -30,7 +30,19 @@ double timeToSeconds(std::string s) {
     return -1;
 }
 
-int main() {
+// epik int main
+int main(int argc, char* argv[]) {
+
+    // what's the version???
+    if (argc > 1) {
+        std::string flag = argv[1];
+        if (flag == "--version" || flag == "-v") {
+            std::cout << GOLD << "smosummary v1.2.1" << std::endl;
+            std::cout << "creator and publisher: aray4iv3" << RESET << std::endl;
+            return 0; // throw the program out the window
+        }
+    }
+
     // everything in existence
     std::vector<std::string> kingdoms = {
         "Mushroom", "Cap", "Cascade", "Sand", "Lake", "Wooded", 
@@ -43,7 +55,7 @@ int main() {
     std::string input;
     int mode = 1;
 
-    std::cout << GOLD << "--- SMO Speedrun: Sum of Best Calculator ---" << RESET << std::endl;
+    std::cout << GOLD << "--- smosummary: Sum of Best Calculator ---" << RESET << std::endl;
     
     // total or split? choose already!!
     std::cout << BOLD << "Choose Input Mode:" << RESET << std::endl;
@@ -112,7 +124,7 @@ int main() {
         outFile << "===========================================\n";
         
         for (size_t i = 0; i < kingdoms.size(); ++i) {
-            // Clean formatting for the text file
+            // grab "formatting" by the collar and throw him out the window
             outFile << std::left << std::setw(15) << kingdoms[i] << ": " << times[i] << "s\n";
         }
         outFile << "TOTAL SOB: " << h << "h " << m << "m " << s << "s\n";
