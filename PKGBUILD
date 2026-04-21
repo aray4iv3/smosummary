@@ -4,20 +4,20 @@ pkgver=1.2.0
 pkgrel=2
 pkgdesc="A Sum of Best (SoB) calculator for Super Mario Odyssey speedrunners"
 arch=('x86_64')
-url="https://github.com/aray4iv3/smosummary" # Change this to your actual link later
+url="https://github.com/aray4iv3/smosummary"
 license=('MIT')
 depends=('gcc-libs')
 makedepends=('gcc')
-source=("smosummary.cpp") # This assumes the .cpp file is in the same folder
-sha256sums=('SKIP') # You can generate real sums later with 'updpkgsums'
+source=("smosummary.cpp")
+sha256sums=('SKIP')
 
 build() {
   cd "$srcdir"
-  # This is your "build script" right here!
+  # g++ script
   g++ -O3 smosummary.cpp -o smosummary
 }
 
 package() {
-  # This tells Arch where to "install" the binary so you can run it from anywhere
+  # /usr/bin spot
   install -Dm755 smosummary "$pkgdir/usr/bin/smosummary"
 }
