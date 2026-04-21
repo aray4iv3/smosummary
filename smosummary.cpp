@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         std::string flag = argv[1];
         if (flag == "--version" || flag == "-v") {
-            std::cout << GOLD << "smosummary v1.2.1" << std::endl;
+            std::cout << GOLD << "smosummary v1.2.0-2" << std::endl;
             std::cout << "creator and publisher: aray4iv3" << RESET << std::endl;
             return 0; // throw the program out the window
         }
