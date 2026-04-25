@@ -6,7 +6,7 @@ a lightweight C++ sum of best (SoB) calculator and stopwatch for super mario ody
 - **smart flags:** handles `-s` (start), `-h` (help), and even catches your typos.
 - **arch native:** available on the AUR.
 
-## 🛠️ Iistallation
+## 🛠️ Iinstallation
 this is a example for yay:
 
 ```bash
