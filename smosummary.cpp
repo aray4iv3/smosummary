@@ -63,22 +63,53 @@ int main(int argc, char* argv[]) {
     bool stopwatch = false;
     if (argc > 1) {
         std::string flag = argv[1];
-        if (flag == "--version" || flag == "-v") {
-            std::cout << "smosummary v2.3.0-1 | tool by aray4iv3\n" << std::endl;
-            return 0; 
-        }
-        if (flag == "--stopwatch" || flag == "-s") stopwatch = true;
+        
+        if (argc > 1) {
+    std::string flag = argv[1];
+
+    if (flag == "--version" || flag == "-v") {
+        std::cout << "smosummary v2.3.1-1 | tool by aray4iv3\n" << std::endl;
+        return 0; // exit after printing version
     }
+    else if (flag == "--help" || flag == "-h") {
+        std::cout << GOLD << " smosummary - a tool for calculcating sum of best for smo TAS/speedruns with a stopwatch\n" << RESET
+					 "Options\n"
+
+					 "    -h, --help display this and exit afterwards\n"
+
+					 "    -s, --stopwatch start smosummary but in stopwatch mode\n"
+
+					 "examples:\n"
+					 "         \n"
+					 "smosummary -s\n"
+					 "smosummary -h\n"
+					 "smosummary --stopwatch\n"
+					 "smosummary --help\n" << std::endl;
+					 
+        return 0;
+    } 
+    else if (flag == "--stopwatch" || flag == "-s") {
+        stopwatch = true; 
+        // continue to stopwatch
+    } 
+    else {
+        // typo handler
+        std::cout << RED << "Error: Unknown flag '" << flag << "'" << RESET << std::endl;
+        std::cout << "Try 'smosummary --help' for options." << std::endl;
+        return 1; // exit with error
+    }
+}
 
     std::vector<double> times; std::vector<std::string> active; 
     std::string r_name = "custom"; int choice = 0;
 
+	// menu
     std::cout << GOLD << ".. smosummary " << (stopwatch ? "(timer)" : "(manual)") << " .." << RESET << std::endl;
 
     while (true) {
         std::cout << "\n1) any% menu\n2) 100%\n3) custom\n4) import\n" << GOLD << "smosummary by aray4iv3" << RESET << "\n> ";
         if (!(std::cin >> choice)) { std::cin.clear(); std::cin.ignore(1000, '\n'); continue; }
-        
+        // choices
         if (choice == 1) {
             int branch1;
             active = {"cap", "cascade", "sand"};
@@ -100,6 +131,7 @@ int main(int argc, char* argv[]) {
             r_name = (branch1 == 1) ? "any% lake" : "any% wooded";
             break;
         }
+	// choice handler
         if (choice == 2) { 
             active = {"mushroom", "cap", "cascade", "sand", "lake", "wooded", "cloud", "lost", "metro", "snow", "seaside", "luncheon", "ruined", "bowser's", "moon", "dark side", "darker side"};
             r_name = "100%"; 
@@ -114,8 +146,9 @@ int main(int argc, char* argv[]) {
             std::string f; std::cout << "path: "; std::cin >> f; std::ifstream ifile(f);
             if (ifile.is_open()) { std::string l; while(std::getline(ifile, l)) if(!l.empty()) active.push_back(l); ifile.close(); r_name = "import"; break; }
         }
-    }
-
+    }		// choice end
+    
+		// stopwatch stuff
     if (stopwatch) {
         std::cout << GREEN << "\nready." << RESET << " hit enter." << std::endl;
         std::cin.ignore(1000, '\n'); std::cin.get();
@@ -148,7 +181,7 @@ int main(int argc, char* argv[]) {
     std::cout << "\n\n" << GOLD << "done." << RESET << std::endl;
     std::cout << "time: " << h << "h " << m << "m " << std::fixed << std::setprecision(2) << s << "s" << std::endl;
 
-    // log with full breakdown
+    // .txt log and save
     const char* home = std::getenv("HOME");
     std::string log_path = (home != nullptr) ? std::string(home) + "/smosummary.txt" : "smosummary.txt";
     
@@ -171,6 +204,6 @@ int main(int argc, char* argv[]) {
 
     std::cout << "\nsave html? (y/n) "; char ex; std::cin >> ex;
     if (ex == 'y') generatehtml(active, times, total);
-
     return 0;
+}
 }
