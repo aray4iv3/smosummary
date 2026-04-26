@@ -1,6 +1,6 @@
 # Maintainer: aray4iv3 <aray.4iv3@gmail.com>
 pkgname=smosummary
-pkgver=2.3.1
+pkgver=2.4.0
 pkgrel=1
 pkgdesc="A Sum of Best (SoB) calculator and Stopwatch for Super Mario Odyssey speedrunners"
 arch=('x86_64')
@@ -14,7 +14,7 @@ sha256sums=('SKIP')
 build() {
   cd "$srcdir"
   # g++ script
-  g++ -O3 smosummary.cpp -o smosummary
+  g++ smosummary.cpp -o smosummary
 }
 
 package() {
