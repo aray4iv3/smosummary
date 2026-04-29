@@ -1,23 +1,24 @@
-# Maintainer: aray4iv3 <aray.4iv3@gmail.com>
+# maintainer: aray4iv3 <aray.4iv3@gmail.com>
 pkgname=smosummary
-pkgver=2.4.0
-pkgrel=1
-pkgdesc="A Sum of Best (SoB) calculator and Stopwatch for Super Mario Odyssey speedrunners"
+pkgver=3.0.0
+pkgrel=2
+pkgdesc="A Sum of Best (SoB) calculator and Stopwatch for Super Mario Odyssey speedrunners in rust."
 arch=('x86_64')
 url="https://github.com/aray4iv3/smosummary"
 license=('MIT')
 depends=('gcc-libs')
-makedepends=('gcc')
-source=("smosummary.cpp")
+makedepends=('rust' 'cargo')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/aray4iv3/smosummary/archive/v${pkgver}.tar.gz")
 sha256sums=('SKIP')
+provides=('smosummary')
 
 build() {
-  cd "$srcdir"
-  # g++ script
-  g++ smosummary.cpp -o smosummary
+  cd "smosummary-$pkgver"
+  cargo build --release
 }
 
 package() {
-  # /usr/bin spot
-  install -Dm755 smosummary "$pkgdir/usr/bin/smosummary"
+  cd "smosummary-$pkgver"  # And here
+  install -Dm755 "target/release/smosummary" "$pkgdir/usr/bin/smosummary"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
