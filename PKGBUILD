@@ -1,7 +1,7 @@
 # maintainer: aray4iv3 <aray.4iv3@gmail.com>
 pkgname=smosummary
 pkgver=3.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A Sum of Best (SoB) calculator and Stopwatch for Super Mario Odyssey speedrunners in rust."
 arch=('x86_64')
 url="https://github.com/aray4iv3/smosummary"
@@ -12,13 +12,17 @@ source=("${pkgname}-${pkgver}.tar.gz::https://github.com/aray4iv3/smosummary/arc
 sha256sums=('SKIP')
 provides=('smosummary')
 
+prepare() {
+  cd "$pkgname-$pkgver"
+  cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+}
+
 build() {
-  cd "smosummary-$pkgver"
-  cargo build --release
+  cd "$pkgname-$pkgver"
+  cargo build --release --locked
 }
 
 package() {
-  cd "smosummary-$pkgver"  # And here
-  install -Dm755 "target/release/smosummary" "$pkgdir/usr/bin/smosummary"
-  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  cd "$pkgname-$pkgver"
+  install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
 }
