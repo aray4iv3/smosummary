@@ -1,11 +1,15 @@
 [package]
 name = "smosummary"
-version = "1.0.0"
-authors = ["aray4iv3 <aray.4iv3@gmail.com"]
-edition = "2024"
+version = "3.0.0"
+authors = ["aray4iv3 <aray.4iv3@gmail.com>"]
+edition = "2021"
 description = "smosummary, but in rust."
-repository = "https://github.com/aray4iv3/smosummary-rust"
+repository = "https://github.com/aray4iv3/smosummary"
 license = "MIT"
+
+[[bin]]
+name = "smosummary"
+path = "src/main.rs"
 
 [dependencies]
 chrono = "0.4"
