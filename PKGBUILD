@@ -1,7 +1,7 @@
 # maintainer: aray4iv3 <aray.4iv3@gmail.com>
 pkgname=smosummary
 pkgver=3.0.0
-pkgrel=5
+pkgrel=6
 pkgdesc="A Sum of Best (SoB) calculator and Stopwatch for Super Mario Odyssey speedrunners in rust."
 arch=('x86_64')
 url="https://github.com/aray4iv3/smosummary"
@@ -19,7 +19,7 @@ prepare() {
 
 build() {
   cd "$pkgname-$pkgver"
-  cargo build --release --locked
+  cargo build --release --offline
 }
 
 package() {
