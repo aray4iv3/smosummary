@@ -8,7 +8,7 @@ url="https://github.com/aray4iv3/smosummary"
 license=('MIT')
 depends=('gcc-libs')
 makedepends=('rust' 'cargo')
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/aray4iv3/smosummary/archive/v${pkgver}.tar.gz")
+source=("${pkgname}::git+${url}.git")
 sha256sums=('SKIP')
 provides=('smosummary')
 
