@@ -1,7 +1,7 @@
 pkgbase = smosummary
 	pkgdesc = A Sum of Best (SoB) calculator and Stopwatch for Super Mario Odyssey speedrunners in rust.
-	pkgver = 3.0.0
-	pkgrel = 7
+	pkgver = 3.0.1
+	pkgrel = 1
 	url = https://github.com/aray4iv3/smosummary
 	arch = x86_64
 	license = MIT
@@ -9,7 +9,7 @@ pkgbase = smosummary
 	makedepends = cargo
 	depends = gcc-libs
 	provides = smosummary
-	source = smosummary-3.0.0.tar.gz::https://github.com/aray4iv3/smosummary/archive/v3.0.0.tar.gz
+	source = smosummary-3.0.1.tar.gz::https://github.com/aray4iv3/smosummary/archive/v3.0.1.tar.gz
 	sha256sums = SKIP
 
 pkgname = smosummary

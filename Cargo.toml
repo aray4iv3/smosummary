@@ -1,6 +1,6 @@
 [package]
 name = "smosummary"
-version = "3.0.0"
+version = "3.0.1"
 authors = ["aray4iv3 <aray.4iv3@gmail.com>"]
 edition = "2021"
 description = "smosummary, but in rust."
