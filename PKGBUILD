@@ -1,7 +1,7 @@
 # maintainer: aray4iv3 <aray.4iv3@gmail.com>
 pkgname=smosummary
 pkgver=3.0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="A Sum of Best (SoB) calculator and Stopwatch for Super Mario Odyssey speedrunners"
 arch=('x86_64')
 url="https://github.com/aray4iv3/smosummary"
